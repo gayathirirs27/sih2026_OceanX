@@ -1,0 +1,14 @@
+# Environment / secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Large scientific data
+*.nc
+
+# OS / editor
+.DS_Store
+.vscode/
