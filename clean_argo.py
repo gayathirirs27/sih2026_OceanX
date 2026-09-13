@@ -1,8 +1,7 @@
 import pandas as pd
 
-input_file = "data/raw/argo/argo_bob_20250101_20250107.csv"
-output_file = "data/processed/argo/argo_bob_20250101_20250107_clean.csv"
-
+input_file = "data/raw/argo/argo_bob_20250101_20250630.csv"
+output_file = "data/processed/argo/argo_bob_20250101_20250630_clean.csv"
 # Read the raw Argo CSV
 df = pd.read_csv(input_file, skiprows=[1])
 
