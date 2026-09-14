@@ -1,0 +1,25 @@
+# Environment / secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Large scientific data
+*.nc
+
+# OS / editor
+.DS_Store
+.vscode/
+
+data/raw/argo/*.csv
+data/processed/argo/*.csv
+
+# Large Glider data
+data/raw/glider/*.csv
+data/processed/glider/*.csv
+
+# Large Glider index files
+data/raw/glider/glider_prof_index.txt
+data/raw/glider/glider_traj_index.txt
