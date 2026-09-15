@@ -6,7 +6,7 @@ from backend.routes.comparison import router as comparison_router
 from backend.routes.analytics import router as analytics_router
 from backend.routes.chlorophyll import router as chlorophyll_router
 from fastapi.middleware.cors import CORSMiddleware
-
+from backend.routes.nrt import router as nrt_router
 
 app = FastAPI(
     title="OceanX API",
@@ -29,7 +29,7 @@ app.include_router(glider_router)
 app.include_router(comparison_router)
 app.include_router(chlorophyll_router)
 app.include_router(analytics_router)
-
+app.include_router(nrt_router)
 
 @app.get("/api/health")
 def health_check():
