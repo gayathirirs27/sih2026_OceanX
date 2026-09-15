@@ -4,6 +4,7 @@ from backend.routes.argo import router as argo_router
 from backend.routes.glider import router as glider_router
 from backend.routes.comparison import router as comparison_router
 from fastapi.middleware.cors import CORSMiddleware
+from backend.routes.chlorophyll import router as chlorophyll_router
 
 
 app = FastAPI(
@@ -21,10 +22,11 @@ app.add_middleware(
 )
 
 
-app.include_router(model_router)
+#app.include_router(model_router)
 app.include_router(argo_router)
 app.include_router(glider_router)
 app.include_router(comparison_router)
+app.include_router(chlorophyll_router)
 
 
 @app.get("/api/health")

@@ -22,33 +22,32 @@ def get_connection():
 # B2 / MODEL CONFIGURATION
 # ============================================================
 
-B2_KEY_ID = os.getenv("B2_KEY_ID")
-B2_APPLICATION_KEY = os.getenv("B2_APPLICATION_KEY")
-B2_BUCKET_NAME = os.getenv("B2_BUCKET_NAME")
-B2_ENDPOINT = os.getenv("B2_ENDPOINT")
+# Account 1 — GLORYS model storage
+B2_1_KEY_ID = os.getenv("B2_1_KEY_ID")
+B2_1_APPLICATION_KEY = os.getenv("B2_1_APPLICATION_KEY")
+B2_1_BUCKET_NAME = os.getenv("B2_1_BUCKET_NAME")
+B2_1_ENDPOINT = os.getenv("B2_1_ENDPOINT")
 
 # Argo comparison model
-# Keep the existing Jan-Mar model path unchanged.
-B2_MODEL_PATH = os.getenv("B2_MODEL_PATH")
+B2_1_MODEL_PATH = os.getenv("B2_1_MODEL_PATH")
 
 # Glider comparison model
-# July 1-15 GLORYS model stored in B2.
-B2_GLIDER_MODEL_PATH = os.getenv(
-    "B2_GLIDER_MODEL_PATH"
+B2_1_GLIDER_MODEL_PATH = os.getenv(
+    "B2_1_GLIDER_MODEL_PATH"
 )
 
 
 # ============================================================
-# B2 STORAGE OPTIONS
+# B2 ACCOUNT 1 STORAGE OPTIONS
 # ============================================================
 
-def get_b2_storage_options():
+def get_b2_1_storage_options():
 
     return {
-        "key": B2_KEY_ID,
-        "secret": B2_APPLICATION_KEY,
+        "key": B2_1_KEY_ID,
+        "secret": B2_1_APPLICATION_KEY,
         "client_kwargs": {
-            "endpoint_url": B2_ENDPOINT
+            "endpoint_url": B2_1_ENDPOINT
         }
     }
 
@@ -61,14 +60,14 @@ def get_b2_storage_options():
 def open_model():
 
     model_url = (
-        f"s3://{B2_BUCKET_NAME}/{B2_MODEL_PATH}"
+        f"s3://{B2_1_BUCKET_NAME}/{B2_1_MODEL_PATH}"
     )
 
     return xr.open_dataset(
         model_url,
         engine="h5netcdf",
         backend_kwargs={
-            "storage_options": get_b2_storage_options()
+            "storage_options": get_b2_1_storage_options()
         }
     )
 
@@ -373,15 +372,15 @@ def get_new_argo_observations():
 def open_glider_model():
 
     model_url = (
-        f"s3://{B2_BUCKET_NAME}/"
-        f"{B2_GLIDER_MODEL_PATH}"
+        f"s3://{B2_1_BUCKET_NAME}/"
+        f"{B2_1_GLIDER_MODEL_PATH}"
     )
 
     return xr.open_dataset(
         model_url,
         engine="h5netcdf",
         backend_kwargs={
-            "storage_options": get_b2_storage_options()
+            "storage_options": get_b2_1_storage_options()
         }
     )
 
