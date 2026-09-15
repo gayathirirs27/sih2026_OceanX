@@ -28,11 +28,13 @@ B2_BUCKET_NAME = os.getenv("B2_BUCKET_NAME")
 B2_ENDPOINT = os.getenv("B2_ENDPOINT")
 
 # Argo comparison model
+# Keep the existing Jan-Mar model path unchanged.
 B2_MODEL_PATH = os.getenv("B2_MODEL_PATH")
 
 # Glider comparison model
-B2_GLIDER_MODEL_PATH = (
-    "glorys/glorys_glider_bob_20160701_20160715.nc"
+# July 1-15 GLORYS model stored in B2.
+B2_GLIDER_MODEL_PATH = os.getenv(
+    "B2_GLIDER_MODEL_PATH"
 )
 
 
@@ -41,6 +43,7 @@ B2_GLIDER_MODEL_PATH = (
 # ============================================================
 
 def get_b2_storage_options():
+
     return {
         "key": B2_KEY_ID,
         "secret": B2_APPLICATION_KEY,
@@ -181,6 +184,7 @@ def compare_argo_with_model(observations=None):
         temperature_difference = None
 
         if obs["temperature"] is not None:
+
             temperature_difference = (
                 model_temperature
                 - obs["temperature"]
@@ -192,6 +196,7 @@ def compare_argo_with_model(observations=None):
             obs["salinity"] is not None
             and model_salinity is not None
         ):
+
             salinity_difference = (
                 model_salinity
                 - obs["salinity"]
@@ -361,13 +366,6 @@ def get_new_argo_observations():
 
 
 # ============================================================
-# GLIDER MODEL CONFIGURATION
-# ============================================================
-
-GLIDER_MODEL_PATH = B2_GLIDER_MODEL_PATH
-
-
-# ============================================================
 # OPEN GLORYS MODEL FROM BACKBLAZE B2
 # Used by Glider comparison
 # ============================================================
@@ -375,7 +373,8 @@ GLIDER_MODEL_PATH = B2_GLIDER_MODEL_PATH
 def open_glider_model():
 
     model_url = (
-        f"s3://{B2_BUCKET_NAME}/{GLIDER_MODEL_PATH}"
+        f"s3://{B2_BUCKET_NAME}/"
+        f"{B2_GLIDER_MODEL_PATH}"
     )
 
     return xr.open_dataset(
