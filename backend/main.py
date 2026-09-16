@@ -29,7 +29,7 @@ app.add_middleware(
 )
 
 
-#-app.include_router(model_router)
+app.include_router(model_router)
 app.include_router(argo_router)
 app.include_router(glider_router)
 app.include_router(comparison_router)
