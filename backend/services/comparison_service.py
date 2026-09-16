@@ -58,10 +58,7 @@ def get_b2_1_storage_options():
 # ============================================================
 
 def open_model():
-
-    model_url = (
-        f"s3://{B2_1_BUCKET_NAME}/{B2_1_MODEL_PATH}"
-    )
+    model_url = f"s3://{B2_1_BUCKET_NAME}/{B2_1_MODEL_PATH}"
 
     return xr.open_dataset(
         model_url,
@@ -70,7 +67,6 @@ def open_model():
             "storage_options": get_b2_1_storage_options()
         }
     )
-
 
 # ============================================================
 # ARGO OBSERVATIONS
