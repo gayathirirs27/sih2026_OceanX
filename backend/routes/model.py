@@ -71,7 +71,7 @@ def get_model_metadata():
     return {
         "dataset": "GLORYS12V1",
 
-        "file": "glorys/oceanx_model_fields_2025.nc",
+        "file": "glorys/glorys_janmar2025.nc",
 
         "variables": [
             "thetao",
